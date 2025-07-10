@@ -1,0 +1,28 @@
+#XSS detect
+alert http any any -> any any (msg:"XSS Attempt - <script> tag"; flow:to_server,established; content:"<script"; nocase; http_uri; classtype:web-application-attack; sid:200; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - <script> in body"; flow:to_server,established; content:"<script"; nocase; http_client_body; classtype:web-application-attack; sid:201; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - DOM event onload"; flow:to_server,established; content:"onload="; nocase; http_uri; sid:202; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - DOM event onclick"; flow:to_server,established; content:"onclick="; nocase; http_uri; sid:203; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - DOM event onerror"; flow:to_server,established; content:"onerror="; nocase; http_uri; sid:204; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - javascript URI"; flow:to_server,established; content:"javascript:"; nocase; http_uri; sid:205; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - encoded script"; flow:to_server,established; content:"%3Cscript"; nocase; http_uri; sid:206; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - <img onerror>"; flow:to_server,established; content:"<img"; nocase; http_uri; content:"onerror="; nocase; http_uri; sid:207; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - document.cookie leak"; flow:to_server,established; content:"document.cookie"; nocase; http_uri; sid:208; rev:1;)
+alert http any any -> any any (msg:"XSS Attempt - alert()"; flow:to_server,established; content:"alert("; nocase; http_uri; sid:209; rev:1;)
+
+#DDos detect
+alert icmp any any -> any any (msg:"[DoS] ICMP Ping of Death - oversized packet"; itype:8; dsize:>1000; sid:300; rev:1;)
+alert icmp any any -> any any (msg:"[DoS] ICMP Flood attack detected"; itype:8; threshold: type both, track by_src, count 20, seconds 5; sid:301; rev:1;)
+alert icmp any any -> any any (msg:"[DoS] ICMP with TCP flags - suspicious spoof (hping3)"; itype:8; dsize:>100; sid:302; rev:2;)
+
+#Brute-force detect
+alert http any any -> any any (msg:"[Brute Force] Multiple POST requests to /login.php"; flow:to_server,established; content:"POST"; http_method; content:"/login.php"; http_uri; threshold: type both, track by_src, count 5, seconds 10; sid:400; rev:2;)
+#alert http any any -> any any (msg:"[Brute Force] Login failed detected in response"; flow:from_server,established; content:"Login failed"; http_response_body; threshold: type both, track by_src, count 3, seconds 20; sid:401; rev:2;)
+alert http any any -> any any (msg:"[Brute Force] Suspicious User-Agent (Hydra)"; content:"User-Agent|3a| hydra"; http_header; sid:402; rev:1;)
+
+#SQLi detect
+alert http any any -> any any (msg:"[SQLi] Suspicious SQL keyword in URL"; flow:to_server,established; content:"' OR '1'='1"; nocase; http_uri; sid:500; rev:1;)
+alert http any any -> any any (msg:"[SQLi] UNION SELECT detected in URL"; flow:to_server,established; content:"UNION SELECT"; nocase; http_uri; sid:501; rev:2;)
+alert http any any -> any any (msg:"[SQLi] SQL injection attempt in POST login"; flow:to_server,established; content:"POST"; http_method; content:"/login.php"; http_uri; content:"' OR 1=1 --"; nocase; http_client_body; sid:503; rev:2;)
+alert http any any -> any any (msg:"[SQLi] Potential brute-force SQLi from same source"; flow:to_server,established; content:"id="; http_uri; content:"'"; nocase; threshold: type both, track by_src, count 5, seconds 10; sid:504; rev:1;)
+alert http any any -> any any (msg:"[SQLi] Blind SQL Injection - sleep() function detected"; flow:to_server,established; content:"sleep("; nocase; http_uri; sid:505; rev:1;)
