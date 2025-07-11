@@ -2,130 +2,90 @@
 
 ## Project Overview
 
-This SIEM solution integrates the following components:
+This project implements a Security Information and Event Management (SIEM) solution that integrates Suricata, Filebeat, and the Elastic Stack to provide real-time network threat detection, log management, and advanced analytics. The solution leverages AI-based Intrusion Detection System (IDS) capabilities for enhanced threat identification and response.
 
-- **Elasticsearch** for log storage and indexing  
-- **Logstash** for log processing and enrichment  
-- **Kibana** for log visualization and analysis  
-- **Filebeat** for log shipping  
-- **Suricata** as the Network Intrusion Detection System (NIDS)
-- **AI-Based IDS** for monitoring network traffic
-- **Winlogbeat** for collecting and forwarding Windows event logs  
+Key components include:
+
+- **Elasticsearch**: Centralized log storage and indexing for efficient search and retrieval.
+- **Logstash**: Log processing, parsing, and enrichment for structured data pipelines.
+- **Kibana**: Visualization and analysis platform for exploring logs and creating dashboards.
+- **Filebeat**: Lightweight log shipper for forwarding logs to Elasticsearch or Logstash.
+- **Suricata**: High-performance Network Intrusion Detection System (NIDS) for real-time traffic monitoring.
+- **AI-Based IDS**: Machine learning model for intelligent threat detection and IOC (Indicator of Compromise) classification.
+- **Winlogbeat**: Collects and forwards Windows event logs for comprehensive system monitoring.
 
 ---
 
 ## Architecture
 
- ![Image Alt](https://github.com/taihieunguyen/Intelligent-threat-protection-AI-powered-Suricata-and-ELK-stack/blob/main/diagrams/Infrastructure%20Architecture.png?raw=true)
+The following diagram illustrates the infrastructure and data flow of the SIEM solution:
 
+![Infrastructure Architecture](https://github.com/taihieunguyen/Intelligent-threat-protection-AI-powered-Suricata-and-ELK-stack/blob/main/diagrams/Infrastructure%20Architecture.png?raw=true)
 
 ---
 
 ## Key Features
 
-- Real-time log ingestion and visualization
-- AI-enhanced IOC classification and rule generation
-- Detection of brute-force and XSS attacks
-- Email alerting using ElastAlert
-- Integration with Windows log sources via Winlogbeat
-- Custom Kibana dashboards for Suricata events
+- **Real-time Log Ingestion and Visualization**: Collect, process, and visualize logs in real-time using Filebeat, Logstash, and Kibana.
+- **AI-Enhanced Threat Detection**: Machine learning model for classifying IOCs and generating dynamic detection rules.
+- **Attack Detection**: Identifies brute-force attacks, XSS (Cross-Site Scripting) attacks, and other malicious activities.
+- **Email Alerting**: Configurable email notifications for critical alerts using ElastAlert.
+- **Windows Log Integration**: Collects and processes Windows event logs via Winlogbeat for comprehensive monitoring.
+- **Custom Kibana Dashboards**: Pre-built dashboards for analyzing Suricata events and network traffic patterns.
 
 ---
 
 ## Repository Structure
 
-├── elasticsearch-config/ # Configuration for Elasticsearch
-├── logstash-config/ # Logstash pipeline and filter files
-├── kibana-config/ # Exported Kibana dashboards
-├── filebeat-config/ # Filebeat configuration files
-├── winlogbeat-config/ # Winlogbeat config for Windows logs
-├── suricata-config/ # Custom rules and YAML config for Suricata
-├── ai-module/ # Python code for AI log classification
-├── demo/ # Attack scripts (e.g., brute force, XSS)
-└── README.md # Project documentation
+- **/configs/**: Configuration files for Elasticsearch, Kibana, Filebeat, and Winlogbeat to streamline setup and deployment.
+- **/diagrams/**: Architectural diagrams, including Infrastructure and Application Architecture.
+- **/model/**: Machine learning models and scripts for training the AI-based IDS.
+- **/report/**: Documentation, analysis reports, and performance metrics for the SIEM system.
 
-## Installation Guide
+---
 
-### Step 1: Clone the Repository
+## Prerequisites
 
-```bash
-git clone https://github.com/taihieunguyen/Intelligent-threat-protection-AI-powered-Suricata-and-ELK-stack.git
-cd Intelligent-threat-protection-AI-powered-Suricata-and-ELK-stack
-Step 2: Set Up Suricata
-Install Suricata on Ubuntu
+To deploy this SIEM solution, ensure the following are installed:
 
-Apply custom rules in suricata-config/
+- Elasticsearch (version X.X.X)
+- Logstash (version X.X.X)
+- Kibana (version X.X.X)
+- Filebeat (version X.X.X)
+- Winlogbeat (version X.X.X) (for Windows environments)
+- Suricata (version X.X.X)
+- Python 3.x (for AI model training and inference)
+- Required Python libraries (listed in `/model/requirements.txt`)
 
-Ensure output to eve.json is enabled
+---
 
-Step 3: Configure Filebeat
-Modify filebeat.yml to read from Suricata eve.json
+## Usage
 
-Enable modules as needed
+- **Monitoring**: Use Kibana to explore logs, visualize Suricata alerts, and monitor network traffic.
+- **Threat Detection**: The AI-based IDS will classify IOCs and generate rules for Suricata.
+- **Alerting**: Receive email notifications for detected threats via ElastAlert.
+- **Windows Events**: Analyze Windows event logs through Kibana dashboards for system-level insights.
 
-Start Filebeat service
+---
 
-Step 4: Configure Winlogbeat
-Install Winlogbeat on Windows machines
+## Contributing
 
-Use provided winlogbeat.yml to forward logs
+Contributions are welcome! To contribute:
 
-Start Winlogbeat service
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes and commit (`git commit -m "Add feature"`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a Pull Request.
 
-Step 5: Set Up Logstash
-Import pipelines from logstash-config/
+---
 
-Configure inputs for Filebeat and Winlogbeat
+## License
 
-Start Logstash
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-Step 6: Load Kibana Dashboards
-Start Kibana
+---
 
-Import dashboards from kibana-config/
+## Contact
 
-Step 7: Run AI Module
-bash
-Copy
-Edit
-cd ai-module/
-python ai_search.py
-Classifies IOCs and generates Suricata rule recommendations
-
-Step 8: Enable Alerting
-Install and configure ElastAlert
-
-Define alert rules for critical events
-
-Demonstration Scenarios
-Demo 1: XSS attack detection on web server with Suricata rule
-
-Demo 2: Brute-force password attack and detection
-
-Demo 3: Email alert triggered via ElastAlert
-
-Demo 4: Real-time Windows log monitoring with Winlogbeat
-
-Demo 5: Web-based AI log search tool
-
-System Requirements
-Ubuntu Server 22.04
-
-Python 3.8+
-
-Suricata
-
-Elasticsearch 8.x
-
-Logstash 8.x
-
-Kibana 8.x
-
-Filebeat and Winlogbeat
-
-
-
-Contact
-Author: Nguyễn Tài Hiếu
-Email: taihieunguyen004@gmail.com
-University of Information Technology – VNU-HCM
+For questions or support, please open an issue on the GitHub repository or contact the maintainer at [your-email@example.com].
