@@ -54,7 +54,7 @@ To deploy this SIEM solution, ensure the following are installed:
 - Filebeat 
 - Winlogbeat  (for Windows environments)
 - Suricata 
-- Python 3.x (for AI model training and inference)
+- Python 3.12 (for AI model training and inference)
 
 ---
 
