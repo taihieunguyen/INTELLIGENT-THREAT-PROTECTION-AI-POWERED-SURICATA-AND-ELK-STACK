@@ -48,14 +48,13 @@ The following diagram illustrates the infrastructure and data flow of the SIEM s
 
 To deploy this SIEM solution, ensure the following are installed:
 
-- Elasticsearch (version X.X.X)
-- Logstash (version X.X.X)
-- Kibana (version X.X.X)
-- Filebeat (version X.X.X)
-- Winlogbeat (version X.X.X) (for Windows environments)
-- Suricata (version X.X.X)
+- Elasticsearch 
+- Logstash 
+- Kibana 
+- Filebeat 
+- Winlogbeat  (for Windows environments)
+- Suricata 
 - Python 3.x (for AI model training and inference)
-- Required Python libraries (listed in `/model/requirements.txt`)
 
 ---
 
@@ -80,12 +79,6 @@ Contributions are welcome! To contribute:
 
 ---
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
 ## Contact
 
-For questions or support, please open an issue on the GitHub repository or contact the maintainer at [your-email@example.com].
+For questions or support, please open an issue on the GitHub repository or contact the maintainer at [taihieunguyen004@gmail.com].
