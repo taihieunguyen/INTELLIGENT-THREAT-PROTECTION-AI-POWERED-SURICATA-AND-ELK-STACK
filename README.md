@@ -1,6 +1,6 @@
-# 🔐 SIEM Deployment with Suricata, Filebeat, and Elastic Stack
+# SIEM Deployment with Suricata, Filebeat, and Elastic Stack
 
-## 📖 Project Overview
+## Project Overview
 
 This SIEM solution integrates the following components:
 
@@ -12,13 +12,13 @@ This SIEM solution integrates the following components:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ![Architecture Diagram](./diagrams/Application Architecture.png)
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - Full Elastic Stack deployment on Ubuntu Server 22.04
 - Suricata NIDS for monitoring and rule-based alerting
