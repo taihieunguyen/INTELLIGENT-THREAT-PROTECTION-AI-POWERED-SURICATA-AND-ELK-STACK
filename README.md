@@ -14,7 +14,8 @@ This SIEM solution integrates the following components:
 
 ## Architecture
 
-./diagrams/Infrastructure Architecture.png
+ ![Image Alt](https://github.com/taihieunguyen/Intelligent-threat-protection-AI-powered-Suricata-and-ELK-stack/blob/main/diagrams/Infrastructure%20Architecture.png?raw=true)
+
 
 ---
 
