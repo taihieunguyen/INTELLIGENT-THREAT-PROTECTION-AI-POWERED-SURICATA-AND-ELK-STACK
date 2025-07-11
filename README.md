@@ -1,2 +1,30 @@
-# INTELLIGENT-THREAT-PROTECTION-AI-POWERED-SURICATA-AND-ELK-STACK
-This project integrates AI with Suricata and ELK Stack to improve threat detection and monitoring. It centralizes logs, enables real-time alerts, and uses AI to detect advanced attacks. Kibana dashboards map threats to MITRE ATT&amp;CK, enhancing visibility, response time, and overall network security.
+# 🔐 SIEM Deployment with Suricata, Filebeat, and Elastic Stack
+
+## 📖 Project Overview
+
+This SIEM solution integrates the following components:
+
+- **Elasticsearch** for log storage and indexing  
+- **Logstash** for log processing and enrichment  
+- **Kibana** for log visualization and analysis  
+- **Filebeat** for log shipping  
+- **Suricata** as the Network Intrusion Detection System (NIDS)
+
+---
+
+## 🏗️ Architecture
+
+![Architecture Diagram](./diagrams/Application Architecture.png)
+
+---
+
+## ✨ Key Features
+
+- Full Elastic Stack deployment on Ubuntu Server 22.04
+- Suricata NIDS for monitoring and rule-based alerting
+- Filebeat shipping logs from Suricata to Logstash
+- Logstash pipelines for parsing Suricata alerts
+- Kibana dashboards for visual threat analysis
+- Email alert integration using ElastAlert
+
+---
