@@ -1,4 +1,4 @@
-# SIEM Deployment with Suricata, Filebeat, and Elastic Stack
+# Intelligent threat protection AI powered Suricata and ELK stack
 
 ## Project Overview
 
