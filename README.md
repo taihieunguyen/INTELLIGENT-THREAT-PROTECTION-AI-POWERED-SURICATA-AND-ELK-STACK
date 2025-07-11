@@ -14,7 +14,7 @@ This SIEM solution integrates the following components:
 
 ## Architecture
 
-![Architecture Diagram](./diagrams/Application Architecture.png)
+![Architecture Diagram](diagrams/Application Architecture.png)
 
 ---
 
